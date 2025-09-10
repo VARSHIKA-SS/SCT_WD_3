@@ -1,0 +1,139 @@
+:root {
+  --primary1: #f8c8dc;  /* Pastel Pink */
+  --primary2: #dfc7a7;  /* Baby Blue */
+  --primary3: #ffd4b2;  /* Peach */
+  --primary4: #f4bea1;  /* Rose Gold */
+  --text: #3d2b1f;      /* Dark Brown */
+  --cell-bg: #ffffffcc; /* Semi-transparent white */
+  --cell-hover: #ffe4e1; /* Light pastel pink */
+  --win: #d4edda;       /* Light green for win */
+  --draw: #fff3cd;      /* Light yellow for draw */
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  /* Animated pastel gradient background */
+  background: linear-gradient(-45deg, var(--primary1), var(--primary2), var(--primary3), var(--primary4));
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Main container with glassmorphism effect */
+.container {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Title style */
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+/* Mode selection buttons */
+.mode-select button {
+  background: var(--primary2);
+  color: white;
+  padding: 10px 22px;
+  margin: 0 6px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.mode-select button:hover {
+  transform: scale(1.1);
+  background: var(--primary4);
+}
+
+/* Game board grid */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Each cell */
+.cell {
+  background: var(--cell-bg);
+  border-radius: 16px;
+  height: 100px;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.3s;
+  user-select: none;
+}
+.cell:hover {
+  background: var(--cell-hover);
+  transform: scale(1.05);
+}
+.cell.filled {
+  animation: pop 0.2s ease-out;
+}
+
+/* Win/draw highlights */
+.cell.win {
+  background-color: var(--win) !important;
+}
+.cell.draw {
+  background-color: var(--draw) !important;
+}
+
+/* Status text */
+#status {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+/* Restart button */
+#restartBtn {
+  padding: 12px 30px;
+  background: var(--primary3);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+#restartBtn:hover {
+  background: var(--text);
+  transform: scale(1.05);
+}
+
+/* Pop animation on fill */
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
